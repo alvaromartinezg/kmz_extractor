@@ -26,6 +26,7 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      margin: 5px;
     }
     #output {
       margin-top: 30px;
@@ -46,10 +47,14 @@
   <input type="file" id="fileInput" accept=".kmz,.kml">
   <br>
   <button onclick="procesarArchivo()">Extraer coordenadas</button>
+  <button onclick="copiarTexto()">Copiar resultado</button>
+  <button onclick="descargarTexto()">Descargar TXT</button>
 
   <div id="output"></div>
 
   <script>
+    let textoFinal = "";
+
     async function procesarArchivo() {
       const archivo = document.getElementById('fileInput').files[0];
       if (!archivo) {
@@ -94,6 +99,7 @@
 
       if (puntos.length === 0) {
         document.getElementById('output').textContent = "No se encontraron puntos.";
+        textoFinal = "";
         return;
       }
 
@@ -110,8 +116,8 @@
         restantes = restantes.filter(p => p !== siguiente);
       }
 
-      const salida = ordenados.map(p => `${p.nombre}, ${p.lat}, ${p.lon}`).join("\n");
-      document.getElementById("output").textContent = salida;
+      textoFinal = ordenados.map(p => `${p.nombre}, ${p.lat}, ${p.lon}`).join("\n");
+      document.getElementById("output").textContent = textoFinal;
     }
 
     function distancia(p1, p2) {
@@ -121,6 +127,22 @@
       const dLon = toRad(p2.lon - p1.lon);
       const a = Math.sin(dLat/2)**2 + Math.cos(toRad(p1.lat)) * Math.cos(toRad(p2.lat)) * Math.sin(dLon/2)**2;
       return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    function copiarTexto() {
+      if (!textoFinal) return;
+      navigator.clipboard.writeText(textoFinal).then(() => {
+        alert("Texto copiado al portapapeles.");
+      });
+    }
+
+    function descargarTexto() {
+      if (!textoFinal) return;
+      const blob = new Blob([textoFinal], { type: "text/plain" });
+      const enlace = document.createElement("a");
+      enlace.href = URL.createObjectURL(blob);
+      enlace.download = "coordenadas.txt";
+      enlace.click();
     }
   </script>
 </body>
