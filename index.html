@@ -16,15 +16,19 @@
       width: 200px;
       margin-bottom: 20px;
     }
-    input[type="file"] {
+    .custom-file-upload {
       margin: 20px 0;
-      padding: 15px;
+      padding: 15px 25px;
       font-size: 16px;
       border: 2px solid #00A859;
       border-radius: 10px;
       background-color: #00A859;
       color: white;
       cursor: pointer;
+      display: inline-block;
+    }
+    input[type="file"] {
+      display: none;
     }
     button {
       background-color: #333;
@@ -51,6 +55,7 @@
 <body>
   <img src="bitel_logo.png" id="logo" alt="Logo Bitel">
   <h2>Selecciona un archivo KMZ o KML</h2>
+  <label for="fileInput" class="custom-file-upload">Seleccionar KMZ</label>
   <input type="file" id="fileInput" accept=".kmz,.kml">
   <br>
   <button onclick="procesarArchivo()">Extraer coordenadas</button>
