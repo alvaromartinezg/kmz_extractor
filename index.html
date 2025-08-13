@@ -268,7 +268,9 @@
             puntosOrdenados = puntos.slice();       // vista previa (sin ordenar)
             document.getElementById("fileTitle").textContent = archivoCargado ? `Archivo: ${archivoCargado}` : "";
             renderSalida(puntosOrdenados);
-            limpiarAlertas();
+
+            // >>> CAMBIO CLAVE: analizar también al EXTRAER, no solo al ORDENAR <<<
+            analizarYAlertarTramosLargos();
         }
 
         function ordenarDesdeCoordenada() {
@@ -494,7 +496,7 @@
         const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLon/2)**2;
         return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
       }
-      function escapeHtml(str){return String(str).replace(/[&<>\"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',\"'\":'&#39;'}[s]));}
+      function escapeHtml(str){return String(str).replace(/[&<>\"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));}
     })();
   <\/script>
 <\/body>
