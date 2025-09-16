@@ -7,13 +7,6 @@
     <title>Bitel-Kmz Extractor Web</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <style>
-        body {
-            font-family: Calibri, sans-serif;
-            background-color: #f2f2f2;
-            text-align: center;
-            padding: 40px;
-        }
-
         #logo {
             width: 200px;
             margin-bottom: 20px;
@@ -162,9 +155,13 @@
 
 /* Fondo general y texto */
 body{
-  background: var(--ui-bg) !important;
+  font-family: Calibri, sans-serif;
+  background: #F5F7F9 !important; /* gris claro base */
   color: var(--ui-text);
-  padding-top: 56px; /* deja respirar el hero */
+  text-align: center;
+  margin: 0 !important;            /* quita cualquier borde o franja */
+  padding: 40px 20px 20px !important;
+  padding-top: 160px !important;   /* espacio para la franja amarilla */
 }
 
 /* “Hero” simple usando tu logo existente */
@@ -179,14 +176,17 @@ h2{
   margin-top: 6px;
 }
 
-/* Crea una franja amarilla detrás del logo/título sin cambiar HTML */
+/* Franja amarilla fija arriba */
 body::before{
   content:"";
-  position: fixed; inset:0 0 auto 0; height: 140px;
-  background: var(--bitel-yellow);
+  position: fixed;
+  top:0; left:0; right:0;
+  height:160px;                    /* misma altura que el padding-top */
+  background:#FFF200;              /* amarillo Bitel */
   border-bottom: 1px solid rgba(0,0,0,.06);
   z-index:-1;
 }
+
 
 /* Card/área blanca común */
 .card, #output{
@@ -630,4 +630,5 @@ button:disabled{ opacity:.55; }
 </body>
 
 </html>
+
 
