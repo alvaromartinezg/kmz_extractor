@@ -7,10 +7,6 @@
     <title>Bitel-Kmz Extractor Web</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <style>
-        #logo {
-            width: 200px;
-            margin-bottom: 20px;
-        }
 
         .custom-file-upload {
             margin: 20px 0;
@@ -156,12 +152,10 @@
 /* Fondo general y texto */
 body{
   font-family: Calibri, sans-serif;
-  background: #F5F7F9 !important; /* gris claro base */
-  color: var(--ui-text);
+  background: #003E4F !important; /* contorno azulado */
+  margin: 0 !important;
+  padding: 0 !important;
   text-align: center;
-  margin: 0 !important;            /* quita cualquier borde o franja */
-  padding: 40px 20px 20px !important;
-  padding-top: 160px !important;   /* espacio para la franja amarilla */
 }
 
 /* “Hero” simple usando tu logo existente */
@@ -175,18 +169,6 @@ h2{
   font-weight: 800;
   margin-top: 6px;
 }
-
-/* Franja amarilla fija arriba */
-body::before{
-  content:"";
-  position: fixed;
-  top:0; left:0; right:0;
-  height:160px;                    /* misma altura que el padding-top */
-  background:#FFF200;              /* amarillo Bitel */
-  border-bottom: 1px solid rgba(0,0,0,.06);
-  z-index:-1;
-}
-
 
 /* Card/área blanca común */
 .card, #output{
@@ -257,6 +239,41 @@ button:disabled{ opacity:.55; }
 
 /* Firma */
 #firma{ color:#2d4c54; opacity:.85; }
+/* Tarjeta/página central con esquinas y sombra (se verá el marco azul alrededor) */
+.page{
+  background: #F5F7F9;              /* fondo claro interior */
+  max-width: 1180px;
+  min-height: 100vh;
+  margin: 18px auto;                 /* deja ver el contorno azul */
+  border-radius: 20px;
+  box-shadow: 0 18px 60px rgba(0,0,0,.25);
+  padding: 0 20px 32px;
+}
+
+/* Hero amarillo con el logo y el título dentro */
+.hero{
+  background: #FFF200;
+  border-radius: 20px 20px 0 0;
+  padding: 28px 16px 22px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.hero h2{
+  color: #003E4F;      /* azul profundo para buen contraste */
+  margin: 12px 0 4px;
+  font-weight: 800;
+}
+#logo{
+  width: 220px;
+  margin: 0;           /* el hero ya agrega el espaciado */
+}
+
+/* (opcional) la “tarjeta” del #output más redondeada/sombra para que combine */
+#output, .card{
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  border: 1px solid rgba(0,0,0,.06);
+}
 
 
 
@@ -271,8 +288,11 @@ button:disabled{ opacity:.55; }
         <div class="ver">Version 2.1</div>
     </div>
 
-    <img src="bitel_logo.png" id="logo" alt="Logo Bitel">
+    <div class="page">
+  <header class="hero">
+    <img src="bitel_logo.png" id="logo" alt="Bitel">
     <h2>Selecciona un archivo KMZ o KML</h2>
+  </header>
 
     <label for="fileInput" class="custom-file-upload">Seleccionar KMZ/KML</label>
     <input type="file" id="fileInput" accept=".kmz,.kml">
@@ -304,7 +324,7 @@ button:disabled{ opacity:.55; }
 
     <!-- Coordenadas -->
     <div id="output"></div>
-
+    </div>
     <script>
         const UMBRAL_METROS = 1100;  // > 1100 m dispara alerta
 
@@ -630,5 +650,6 @@ button:disabled{ opacity:.55; }
 </body>
 
 </html>
+
 
 
