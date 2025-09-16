@@ -147,6 +147,121 @@
             font-size: 11px;
             font-style: italic;
         }
+/* ====== BITEL THEME (añádelo al FINAL de tu <style>) ====== */
+:root{
+  --bitel-yellow:#FFF200;
+  --bitel-cyan:#00B8EB;
+  --bitel-teal:#008D97;
+  --bitel-deep:#003E4F;
+  --ui-bg:#F5F7F9;
+  --ui-text:#3A3A3A;
+  --radius:12px;
+  --focus:0 0 0 3px rgba(0,184,235,.35);
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+/* Fondo general y texto */
+body{
+  background: var(--ui-bg) !important;
+  color: var(--ui-text);
+  padding-top: 56px; /* deja respirar el hero */
+}
+
+/* “Hero” simple usando tu logo existente */
+#logo{
+  width: 220px;
+  margin-bottom: 16px;
+  filter: none;
+}
+h2{
+  color: var(--bitel-deep);
+  font-weight: 800;
+  margin-top: 6px;
+}
+
+/* Crea una franja amarilla detrás del logo/título sin cambiar HTML */
+body::before{
+  content:"";
+  position: fixed; inset:0 0 auto 0; height: 140px;
+  background: var(--bitel-yellow);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  z-index:-1;
+}
+
+/* Card/área blanca común */
+.card, #output{
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,.06) !important;
+}
+#output{ min-height: 160px; }
+
+/* Botón “Seleccionar KMZ/KML” (tu label.custom-file-upload) */
+.custom-file-upload{
+  background: var(--bitel-cyan) !important;
+  border-color: var(--bitel-cyan) !important;
+  color:#003244 !important;
+  font-weight: 700;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,184,235,.25);
+  transition: background .15s ease, transform .04s ease, box-shadow .2s ease;
+}
+.custom-file-upload:hover{ background: var(--bitel-teal) !important; color:#fff !important; }
+.custom-file-upload:active{ transform: translateY(1px); }
+.custom-file-upload:focus{ outline:none; box-shadow: var(--focus); }
+
+/* Botones secundarios */
+button{
+  background: #0E4051 !important;   /* azul profundo para contraste */
+  color:#E8FBFF !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+  transition: background .15s ease, transform .04s ease, box-shadow .2s ease;
+}
+button:hover{ background: var(--bitel-teal) !important; }
+button:active{ transform: translateY(1px); }
+button:disabled{ opacity:.55; }
+
+/* Campo Ordenar – si quieres jerarquía tipo “secundario” */
+#btnOrdenarCoord{
+  background:#fff !important; color: var(--bitel-teal) !important;
+  border:2px solid var(--bitel-teal) !important;
+  box-shadow:none;
+}
+#btnOrdenarCoord:hover{ background: var(--bitel-teal) !important; color:#fff !important; }
+
+/* Inputs */
+.card input{
+  border:1.5px solid rgba(0,0,0,.14) !important;
+  border-radius: 12px !important;
+}
+.card input:focus{
+  outline:none; border-color: var(--bitel-cyan) !important; box-shadow: var(--focus);
+}
+
+/* Estado / mensajes y título de archivo */
+#status{ color: var(--bitel-deep) !important; }
+#fileTitle{ color: var(--bitel-deep) !important; }
+
+/* Alertas */
+#alertas .warn{
+  background: #fff7f7 !important;
+  border:1px solid #f1c4c4 !important;
+  box-shadow: var(--shadow);
+}
+#alertas .ok{
+  background: #f3fffb !important;
+  border:1px solid #c6eee2 !important;
+  box-shadow: var(--shadow);
+}
+
+/* Firma */
+#firma{ color:#2d4c54; opacity:.85; }
+
+
+
+
+        
     </style>
 </head>
 
@@ -515,3 +630,4 @@
 </body>
 
 </html>
+
